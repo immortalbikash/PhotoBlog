@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0a6ebd"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="280dp"
+        android:layout_height="120dp"
+        android:layout_above="@+id/tilEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30sp"
+        android:src="@drawable/welcome" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Your Email.."
+            android:inputType="textEmailAddress"
+            android:textSize="25sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tilEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="25sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilPassword"
+        android:layout_centerHorizontal="true"
+        android:text="Login to Account"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/white"
+        android:background="#FF6D00"/>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Need a New Account?"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
+        android:background="#DD2C00"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginTop="20dp"/>
+
+
+</RelativeLayout>
