@@ -21,14 +21,14 @@
         android:id="@+id/new_post_image"
         android:layout_width="401dp"
         android:layout_height="234dp"
-        android:src="@drawable/post"
         android:scaleType="centerCrop"
+        android:src="@drawable/post"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_post_toolbar" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/new_post_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -36,6 +36,7 @@
         android:gravity="start|top"
         android:hint="Add Description . . ."
         android:inputType="textMultiLine"
+        android:maxLength="120"
         android:padding="16dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,5 +56,5 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/new_post_desc" />
 </androidx.constraintlayout.widget.ConstraintLayout>
