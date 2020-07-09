@@ -5,11 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,6 +35,8 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import id.zelory.compressor.Compressor;
 
 public class NewPostActivity extends AppCompatActivity {
 
@@ -100,9 +104,8 @@ public class NewPostActivity extends AppCompatActivity {
                     pd.setMessage("Uploading. . .");
                     pd.show();
 
-                    String randomName = FieldValue.serverTimestamp().toString();
-
-                    StorageReference filePath = storageReference.child("post_images").child(randomName + ".jpg");
+//                    String randomName = FieldValue.serverTimestamp().toString();
+                    StorageReference filePath = storageReference.child("post_images").child(System.currentTimeMillis() + "." + getFileExtension(postImageUri));
                     filePath.putFile(postImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -148,6 +151,14 @@ public class NewPostActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String getFileExtension(Uri uri) {
+        //This method will return the extension of the file we picked
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(uri));
+
     }
 
     @Override
