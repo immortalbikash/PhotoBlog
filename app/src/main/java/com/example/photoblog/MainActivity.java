@@ -64,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
         notificationFragment = new NotificationFragment();
         accountFragment = new AccountFragment();
 
-        replaceFragment(homeFragment);
+        if (mAuth.getCurrentUser() != null) {
+            replaceFragment(homeFragment);
+        }
 
         mainbottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

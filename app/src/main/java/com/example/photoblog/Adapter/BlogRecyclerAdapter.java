@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.photoblog.Model.BlogPost;
 import com.example.photoblog.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.util.List;
@@ -20,6 +25,10 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapter.BlogViewHolder> {
+
+    private FirebaseFirestore firebaseFirestore;
+
+
     Context mContext;
     List<BlogPost> blog_list;
 
@@ -33,11 +42,14 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
     public BlogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.blog_list_item, parent, false);
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
         return new BlogViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BlogViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final BlogViewHolder holder, int position) {
 
         BlogPost blogPost = blog_list.get(position);
 
@@ -48,6 +60,26 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         Glide.with(mContext)
                 .load(blogPost.getImage_url())
                 .into(holder.blogImageView);
+
+
+        String user_id = blog_list.get(position).getUser_id();
+        //TO retrieve data from User
+        firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    String userName = task.getResult().getString("name");
+                    String userImage = task.getResult().getString("image");
+
+                    holder.username.setText(userName);
+                    Glide.with(mContext).load(userImage).into(holder.blogUserImage);
+
+                } else {
+                    String err = task.getException().getMessage();
+                    Toast.makeText(mContext, "Err: " + err, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
     }
