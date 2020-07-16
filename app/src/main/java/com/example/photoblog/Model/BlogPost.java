@@ -1,16 +1,20 @@
 package com.example.photoblog.Model;
 
 
+import java.util.Date;
+
 public class BlogPost {
     public String user_id, image_url, desc;
+    public Date timestamp;
 
     public BlogPost() {
     }
 
-    public BlogPost(String user_id, String image_url, String desc) {
+    public BlogPost(String user_id, String image_url, String desc, Date timestamp) {
         this.user_id = user_id;
         this.image_url = image_url;
         this.desc = desc;
+        this.timestamp = timestamp;
     }
 
     public String getUser_id() {
@@ -35,5 +39,13 @@ public class BlogPost {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }

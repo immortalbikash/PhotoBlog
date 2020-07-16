@@ -106,7 +106,7 @@ public class SetupActivity extends AppCompatActivity {
 
                         //2line code ko work bhaneko image view ma image aunu bhanda pailawelcome image dekaucha
                         RequestOptions placeholderRequest = new RequestOptions();
-                        placeholderRequest.placeholder(R.drawable.welcome);
+                        placeholderRequest.placeholder(R.drawable.loading);
 
                         Glide.with(SetupActivity.this).setDefaultRequestOptions(placeholderRequest).load(image).into(setupImage);
 
