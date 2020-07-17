@@ -13,23 +13,23 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/blog_user_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_width="69dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/blog_user_name"
-            android:layout_width="172dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="173dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
+            android:paddingTop="5dp"
             android:text="Username"
-            android:textSize="14dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/blog_user_image"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
             android:id="@+id/blog_date"
             android:layout_width="172dp"
             android:layout_height="32dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:text="TextView"
             android:textSize="14dp"
             app:layout_constraintStart_toEndOf="@+id/blog_user_image"
@@ -65,10 +65,30 @@
             android:layout_marginEnd="16dp"
             android:text="This is post blog.  This is post blog. This is post blog. This is post blog. This is post blog."
             android:textSize="16dp"
-            android:textStyle="bold"
+            android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/blog_image" />
+
+        <ImageView
+            android:id="@+id/blog_like_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/blog_desc"
+            app:srcCompat="@drawable/action_like_gray" />
+
+        <TextView
+            android:id="@+id/blog_like_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Likes"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/blog_like_btn"
+            app:layout_constraintTop_toBottomOf="@+id/blog_desc" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

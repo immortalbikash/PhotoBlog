@@ -61,14 +61,17 @@ public class HomeFragment extends Fragment {
         Query firstQuery = firebaseFirestore.collection("Posts").orderBy("timestamp", Query.Direction.DESCENDING);
 
         //firebaseFirestore.collection("Posts) ko thau ma firstQuery halne
-        firstQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firstQuery.addSnapshotListener(getActivity(), new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
                 for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
                     if (doc.getType() == DocumentChange.Type.ADDED) {
 
-                        BlogPost blogPost = doc.getDocument().toObject(BlogPost.class);
+                        //TO get blog post ID
+                        String blogPostId = doc.getDocument().getId();
+
+                        BlogPost blogPost = doc.getDocument().toObject(BlogPost.class).withId(blogPostId);
                         blog_list.add(blogPost);
 
                         blogRecyclerAdapter.notifyDataSetChanged();
